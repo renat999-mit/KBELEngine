@@ -14,6 +14,7 @@ class Logger
 public:
 
   Logger(const bool& logToFile = false, const std::string& fileName = "logKBELEngine.out", const bool& verbose = true);
+  ~Logger();
 
   enum EventCategory
   {

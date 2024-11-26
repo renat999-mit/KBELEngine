@@ -6,14 +6,23 @@ namespace KBEL
 Logger::Logger(const bool& logToFile, const std::string& fileName, const bool& verbose)
 : verbose_(verbose)
 {
-  if(logToFile)
+  if (logToFile)
     setLogFile(fileName);
+
+  std::string logMessage = "Initializing KBELEngine...";
+  registerLog(logMessage, INFO);
+}
+
+Logger::~Logger()
+{
+  std::string logMessage = "Exiting KBELEngine...";
+  registerLog(logMessage, INFO);
 }
 
 void Logger::registerLog(const std::string& logMessage, const EventCategory category)
 {
   std::string categoryLabel;
-  switch(category)
+  switch (category)
   {
     case INFO: categoryLabel = "[INFO]"; break;
     case WARNING: categoryLabel = "[WARNING]"; break;
@@ -23,7 +32,7 @@ void Logger::registerLog(const std::string& logMessage, const EventCategory cate
 
   std::string outputMessage = getTimeInfo() + " " + categoryLabel  + ": " + logMessage;
 
-  if(verbose_)
+  if (verbose_)
   {
     if(category == ERROR)
       std::cerr << outputMessage << std::endl;
@@ -31,7 +40,7 @@ void Logger::registerLog(const std::string& logMessage, const EventCategory cate
       std::cout << outputMessage << std::endl;
   }
 
-  if(logFile_.is_open())
+  if (logFile_.is_open())
     logFile_ << outputMessage << std::endl;
 }
 
