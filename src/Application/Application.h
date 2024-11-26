@@ -9,7 +9,10 @@ class Application
 {
 public:
 
-  Application() = default;
+  Application(std::string appName)
+  : appName_(appName)
+  {}
+
   virtual ~Application() = default;
 
   virtual void onInit() = 0;
