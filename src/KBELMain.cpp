@@ -14,12 +14,12 @@ Usage mode for now:
 
 */
 
-int main(int argc, char* argv[])
+int KBELmain(int argc, char* argv[])
 {
 
   // Parse command line arguments
   bool logToFile = false;
-  std::string logFileName = "dummyName";
+  std::string logFileName = "dummyName.txt";
   bool logToTerminal = true;
   for (int i = 1; i < argc; i++)
   {
@@ -28,14 +28,20 @@ int main(int argc, char* argv[])
     {
       logToFile = true;
       logFileName = argv[i+1];
+      i++;
     }
     else if (arg == "--log-to-terminal=true")
     {
       logToTerminal = true;
     }
-    else if (arg == "log-to-terminal=false")
+    else if (arg == "--log-to-terminal=false")
     {
       logToTerminal = false;
+    }
+    else
+    {
+      std::cerr << "Command not found: " << arg << std::endl;
+      return -1;
     }
   }
 

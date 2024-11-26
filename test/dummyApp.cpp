@@ -34,3 +34,12 @@ std::shared_ptr<DummyApp> createApplication()
   return std::make_shared<DummyApp>();
 };
 
+
+// Forward declaration of the engine's main function
+extern int KBELmain(int argc, char* argv[]);
+
+int main(int argc, char* argv[])
+{
+    // Forward call to the engine's main function
+    return KBELmain(argc, argv);
+}
